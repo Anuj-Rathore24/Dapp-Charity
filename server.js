@@ -29,4 +29,27 @@ app.get("/getCurrentAccount",async (req,res)=>{
     res.json(owner);
 })
 
+app.post("/addCharity", async (req, res) => {
+    const name = req.body.name;
+    const bankacc = req.body.bankacc;
+    const bankname = req.body.bankname;
+    const address = req.body.address;
+    console.log(address);
+    const accounts = await myContract.methods
+      .add_charity(
+        "name2",
+        "bankacc3",
+        "bankname4",
+        "0x60743e29928302be13a969Cb250dafBaEc96F9c2"
+      )
+      .call({
+        from: "0x60743e29928302be13a969Cb250dafBaEc96F9c2",
+        gasPrice: "422054130",
+        gas:"800000"
+      });
+  
+    console.log(accounts);
+    res.json(accounts);
+  });
+
 app.listen(5000,()=>console.log(`Started on Port 5000`));
